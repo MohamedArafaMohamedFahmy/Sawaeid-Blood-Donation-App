@@ -27,6 +27,7 @@
     <string name="enter_name_of_sheet">Enter name of sheet</string>
     <string name="enter_url_of_sheet">Enter URL of sheet</string>
     <string name="upload">Upload</string>
+    <string name="zero">0%1$s</string>
 
     <string-array name="blood_type">
         <item> A Positive</item>

@@ -17,7 +17,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.arafa.mohamed.sawaeidblooddonation.R;
-import com.arafa.mohamed.sawaeidblooddonation.models.SendData;
+import com.arafa.mohamed.sawaeidblooddonation.models.DonorDataModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
@@ -37,7 +37,7 @@ public class UploadDataActivity extends AppCompatActivity {
     Toolbar toolbar;
     String name, city, phoneNumber, lastDonation, bloodType, notes, indexType, url, nameFile;
     Spinner spinnerType;
-    List<SendData> sendJson;
+    List<DonorDataModel> sendJson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,11 +94,12 @@ public class UploadDataActivity extends AppCompatActivity {
                     phoneNumber = jsonObject.getString("phone number");
                     lastDonation = jsonObject.getString("last donation");
                     bloodType = jsonObject.getString("blood type");
-                   // notes = jsonObject.getString("notes");
-                    SendData sd = new SendData(name, city, phoneNumber, lastDonation, bloodType);
+                    notes = jsonObject.getString("notes");
+                    String id = String.valueOf(i+1);
+                    DonorDataModel sd = new DonorDataModel(name, city, phoneNumber, lastDonation, bloodType,notes,id);
                     sendJson.add(sd);
 
-                    databaseReference.child("BloodDonors").child(indexType).child(phoneNumber).setValue(sd).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    databaseReference.child("BloodDonors").child(indexType).child(id).setValue(sd).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull  Task<Void> task) {
                             if (task.isSuccessful()){

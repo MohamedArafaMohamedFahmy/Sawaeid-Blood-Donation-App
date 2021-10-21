@@ -1,21 +1,22 @@
 package com.arafa.mohamed.sawaeidblooddonation.models;
 
+import java.io.Serializable;
 
+public class DonorDataModel implements Serializable {
+    private String name, city, phoneNumber, lastDonation, bloodType, notes,id;
 
-public class SendData {
-
-    private String name, city, phoneNumber, lastDonation, bloodType, notes;
-
-    public  SendData(){
+    public  DonorDataModel(){
 
     }
 
-    public SendData(String name, String city, String phoneNumber, String lastDonation, String bloodType) {
+    public DonorDataModel(String name, String city, String phoneNumber, String lastDonation, String bloodType, String notes, String id) {
         this.name = name;
         this.city = city;
         this.phoneNumber = phoneNumber;
         this.lastDonation = lastDonation;
         this.bloodType = bloodType;
+        this.notes = notes;
+        this.id = id;
     }
 
     public String getName() {
@@ -64,5 +65,13 @@ public class SendData {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
