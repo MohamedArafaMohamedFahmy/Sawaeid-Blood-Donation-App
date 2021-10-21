@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">SawaeidBloodDonation</string>
+
+    <string name="first_text">First ,lets reset password your account</string>
+    <string name="second_text">Please enter your email</string>
+    <string name="image_header">Image Header</string>
+    <string name="sign_in">Sign In</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="doNot_have_an_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="loading">Loading....</string>
+    <string name="swaed_blood_donation">Swaed Blood Donation</string>
+    <string name="image_sign_up">Image Sign up</string>
+    <string name="user_name">User Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="image_forgot_password">Image Forgot Password</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="text_error1">Please enter password</string>
+    <string name="text_error2">Password too short, Password must be at least 6 characters</string>
+    <string name="text_error3">Please enter confirm password</string>
+    <string name="text_error4">The confirm password not match with password</string>
+    <string name="message_forgot_password">Check your email for a link to reset your password %1$s </string>
+    <string name="choose_blood_type">Choose Blood Type</string>
+    <string name="enter_name_of_sheet">Enter name of sheet</string>
+    <string name="enter_url_of_sheet">Enter URL of sheet</string>
+    <string name="upload">Upload</string>
+
+    <string-array name="blood_type">
+        <item> A Positive</item>
+        <item> A Negative</item>
+        <item> B Positive </item>
+        <item> B Negative </item>
+        <item> AB Positive </item>
+        <item> AB Negative </item>
+        <item> O Positive </item>
+        <item> O Negative </item>
+        <item> Unknown </item>
+    </string-array>
+
+
+</resources>

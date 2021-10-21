@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".activities.MainActivity"
+    android:background="#FFF4E6"
+    android:layoutDirection="ltr">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_blood_donation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
+        app:title="Blood Donation"
+        app:titleTextColor="@color/white"
+        android:layout_alignParentTop="true"
+        />
+
+    <com.arafa.mohamed.sawaeidblooddonation.models.CustomSpinner
+        android:id="@+id/spinner_blood"
+        android:layout_below="@id/toolbar_blood_donation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:overScrollMode="ifContentScrolls"
+        android:elevation="3dp"
+        android:popupBackground="#FFF4E6"
+        android:dropDownVerticalOffset="50dp"
+        android:background="@drawable/bg_spinner_blood_type"
+        />
+
+</RelativeLayout>
