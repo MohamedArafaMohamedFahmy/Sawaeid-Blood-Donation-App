@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_name_donor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black_gray"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:padding="5dp"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_phone_number_donor"
+        android:layout_below="@id/text_name_donor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:padding="5dp"
+
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_city"
+        android:layout_below="@id/text_name_donor"
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:padding="5dp"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_last_donation"
+        android:layout_below="@id/text_phone_number_donor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:padding="5dp"
+        />
+
+</RelativeLayout>

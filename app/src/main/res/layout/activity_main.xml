@@ -26,9 +26,15 @@
         android:layout_margin="16dp"
         android:overScrollMode="ifContentScrolls"
         android:elevation="3dp"
+        android:popupElevation="2dp"
         android:popupBackground="#FFF4E6"
         android:dropDownVerticalOffset="50dp"
         android:background="@drawable/bg_spinner_blood_type"
         />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec_data_donation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>

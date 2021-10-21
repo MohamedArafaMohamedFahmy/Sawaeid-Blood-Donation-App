@@ -1,9 +1,7 @@
 package com.arafa.mohamed.sawaeidblooddonation.models;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.util.AttributeSet;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
@@ -22,10 +20,6 @@ public class CustomSpinner extends androidx.appcompat.widget.AppCompatSpinner {
         super(context);
     }
 
-    public CustomSpinner(@NonNull Context context, int mode) {
-        super(context, mode);
-    }
-
     public CustomSpinner(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
@@ -34,13 +28,6 @@ public class CustomSpinner extends androidx.appcompat.widget.AppCompatSpinner {
         super(context, attrs, defStyleAttr);
     }
 
-    public CustomSpinner(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int mode) {
-        super(context, attrs, defStyleAttr, mode);
-    }
-
-    public CustomSpinner(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int mode, Resources.Theme popupTheme) {
-        super(context, attrs, defStyleAttr, mode, popupTheme);
-    }
 
     @Override
     public boolean performClick() {
@@ -58,17 +45,11 @@ public class CustomSpinner extends androidx.appcompat.widget.AppCompatSpinner {
         }
     }
 
-    /**
-     * Register the listener which will listen for events.
-     */
     public void setSpinnerEventsListener(
             OnSpinnerEventsListener onSpinnerEventsListener) {
         mListener = onSpinnerEventsListener;
     }
 
-    /**
-     * Propagate the closed Spinner event to the listener from outside if needed.
-     */
     public void performClosedEvent() {
         mOpenInitiated = false;
         if (mListener != null) {
@@ -76,11 +57,6 @@ public class CustomSpinner extends androidx.appcompat.widget.AppCompatSpinner {
         }
     }
 
-    /**
-     * A boolean flag indicating that the Spinner triggered an open event.
-     *
-     * @return true for opened Spinner
-     */
     public boolean hasBeenOpened() {
         return mOpenInitiated;
     }
