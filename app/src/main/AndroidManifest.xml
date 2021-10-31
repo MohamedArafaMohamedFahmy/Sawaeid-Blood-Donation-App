@@ -11,11 +11,18 @@
         android:roundIcon="@mipmap/ic_logo_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SawaeidBloodDonation">
-        <activity android:name=".activities.DonorDetailsActivity"
+        <activity android:name=".activities.SplashScreenActivity"
             android:theme="@style/Theme.MaterialComponents.NoActionBar"
             >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.DonorDetailsActivity"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"/>
         <activity
             android:name=".activities.UploadDataActivity"
             android:theme="@style/Theme.MaterialComponents.NoActionBar">
@@ -27,11 +34,6 @@
         <activity
             android:name=".activities.RegistrationActivity"
             android:theme="@style/Theme.MaterialComponents.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity

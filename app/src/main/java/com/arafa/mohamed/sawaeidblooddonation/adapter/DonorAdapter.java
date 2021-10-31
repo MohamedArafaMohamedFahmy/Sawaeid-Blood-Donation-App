@@ -69,6 +69,7 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.MyViewHolder
         holder.itemView.setOnClickListener(v -> {
           Intent intentDetails = new Intent(context, DonorDetailsActivity.class);
           intentDetails.putExtra("details",downloadData.get(position));
+          intentDetails.putExtra("bloodType",bloodType);
           context.startActivity(intentDetails);
         });
 

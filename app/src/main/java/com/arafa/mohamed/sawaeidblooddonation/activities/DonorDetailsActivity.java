@@ -42,6 +42,7 @@ public class DonorDetailsActivity extends AppCompatActivity implements CustomSpi
     String nameDonor, phoneNumber, city, lastDonation, bloodType, notes, idDonor,donationDate;
     DonorDataModel donorDataModel, retrieveDonorData;
     DatabaseReference databaseReference;
+    Bundle extra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,8 @@ public class DonorDetailsActivity extends AppCompatActivity implements CustomSpi
 
         final Object objDetailed = getIntent().getSerializableExtra("details");
         retrieveDonorData = (DonorDataModel) objDetailed;
+        extra = getIntent().getExtras();
+
 
         if (retrieveDonorData != null){
             etNameDonor.setText(retrieveDonorData.getName());
@@ -73,6 +76,8 @@ public class DonorDetailsActivity extends AppCompatActivity implements CustomSpi
             etLastDonation.setText(retrieveDonorData.getLastDonation());
             etNotes.setText(retrieveDonorData.getNotes());
             btRegister.setText(R.string.update);
+            bloodType = extra.getString("bloodType");
+            spinnerBlood.setVisibility(View.GONE);
         }
 
         spinnerBlood.setSpinnerEventsListener(this);
@@ -106,6 +111,16 @@ public class DonorDetailsActivity extends AppCompatActivity implements CustomSpi
                 databaseReference.child("BloodDonors").child(bloodType).child(idDonor).setValue(donorDataModel).addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(this, "Register Successfully", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this, "" + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            if (!nameDonor.isEmpty() && phoneNumber.length() == 10 && !city.isEmpty() && !lastDonation.isEmpty()  && !retrieveDonorData.getId().isEmpty() ) {
+                databaseReference.child("BloodDonors").child(bloodType).child(retrieveDonorData.getId()).setValue(donorDataModel).addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(this, "Update Successfully", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(this, "" + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                     }

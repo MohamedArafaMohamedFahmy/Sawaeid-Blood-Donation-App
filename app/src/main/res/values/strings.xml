@@ -31,6 +31,7 @@
     <string name="name_donor">Name Donor</string>
     <string name="phone_number">Phone Number</string>
     <string name="do_you_want_to_delete_this_item">Do you want to delete this item ?</string>
+    <string name="text_logo">Swaed Ismailia Blood Donation</string>
 
     //button
     <string name="sign_out">Sign_Out</string>
