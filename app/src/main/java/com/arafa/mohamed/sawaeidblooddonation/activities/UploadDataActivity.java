@@ -1,6 +1,5 @@
 package com.arafa.mohamed.sawaeidblooddonation.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -18,8 +17,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.arafa.mohamed.sawaeidblooddonation.R;
 import com.arafa.mohamed.sawaeidblooddonation.models.DonorDataModel;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import org.json.JSONArray;
@@ -35,7 +32,7 @@ public class UploadDataActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     AppCompatEditText etNameSheet, etUrlSheet;
     Toolbar toolbar;
-    String name, city, phoneNumber, lastDonation, bloodType, notes, indexType, url, nameFile;
+    String name, city, phoneNumber, lastDonation, bloodType, notes, indexType, url, nameFile,id;
     Spinner spinnerType;
     List<DonorDataModel> sendJson;
 
@@ -95,17 +92,12 @@ public class UploadDataActivity extends AppCompatActivity {
                     lastDonation = jsonObject.getString("last donation");
                     bloodType = jsonObject.getString("blood type");
                     notes = jsonObject.getString("notes");
-                    String id = String.valueOf(i+1);
+                    id = databaseReference.push().getKey();
                     DonorDataModel sd = new DonorDataModel(name, city, phoneNumber, lastDonation, bloodType,notes,id);
                     sendJson.add(sd);
-
-                    databaseReference.child("BloodDonors").child(indexType).child(id).setValue(sd).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull  Task<Void> task) {
-                            if (task.isSuccessful()){
-                                Toast.makeText(UploadDataActivity.this, "Successfully", Toast.LENGTH_SHORT).show();
-                            }
-
+                    databaseReference.child("BloodDonors").child(indexType).child(id).setValue(sd).addOnCompleteListener(task -> {
+                        if (task.isSuccessful()){
+                            Toast.makeText(UploadDataActivity.this, "Successfully", Toast.LENGTH_SHORT).show();
                         }
                     });
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.LoginActivity"
-    android:background="#FFF4E6"
+    android:background="@color/of_white"
     android:layoutDirection="ltr"
     >
 

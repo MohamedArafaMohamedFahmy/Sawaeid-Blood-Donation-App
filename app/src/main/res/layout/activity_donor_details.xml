@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.DonorDetailsActivity"
+    android:background="@color/of_white"
+    android:layoutDirection="ltr"
+
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_donor_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
+        app:title="Donor Detail"
+        app:titleTextColor="@color/white"
+        android:layout_alignParentTop="true"
+        />
+
+    <ScrollView
+        android:layout_below="@id/toolbar_donor_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:layout_marginTop="20dp"
+            >
+
+            <com.arafa.mohamed.sawaeidblooddonation.models.CustomSpinner
+                android:id="@+id/spinner_blood_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:overScrollMode="ifContentScrolls"
+                android:elevation="3dp"
+                android:popupElevation="2dp"
+                android:popupBackground="#FFF4E6"
+                android:dropDownVerticalOffset="50dp"
+                android:background="@drawable/bg_spinner_blood_type"
+                />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/name_donor_layout"
+            android:layout_below="@id/spinner_blood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/name_donor"
+            android:textColorHint="@color/black_gray"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:boxStrokeColor="@color/black_gray"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_name_donor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_gray"
+                android:drawablePadding="10dp"
+                android:inputType="text"
+                android:drawableStart="@drawable/ic_baseline_person_24"
+
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phone_number_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name_donor_layout"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/phone_number"
+            app:prefixText="0"
+            app:prefixTextColor="@color/black"
+            android:textColorHint="@color/black_gray"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:boxStrokeColor="@color/black_gray"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_gray"
+                android:drawablePadding="10dp"
+                android:inputType="phone"
+                android:maxLength="10"
+                android:textDirection="ltr"
+                android:drawableStart="@drawable/ic_baseline_phone_24"
+
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/city_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/phone_number_layout"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:hint="@string/city"
+            android:textColorHint="@color/black_gray"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:boxStrokeColor="@color/black_gray"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_gray"
+                android:drawablePadding="10dp"
+                android:inputType="text"
+                android:drawableStart="@drawable/ic_baseline_location_city_24"
+
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/last_donation_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/city_layout"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="25dp"
+            android:hint="@string/last_donation"
+            android:textColorHint="@color/black_gray"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:boxStrokeColor="@color/black_gray"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/ic_baseline_calendar_24"
+            style="@style/FilledBoxEndIconTintDate"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_last_donation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_gray"
+                android:drawablePadding="10dp"
+                android:inputType="date"
+                android:drawableStart="@drawable/ic_baseline_date_24"
+
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/notes_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/last_donation_layout"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="25dp"
+            android:hint="@string/notes"
+            android:textColorHint="@color/black_gray"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:boxStrokeColor="@color/black_gray"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_gray"
+                android:drawablePadding="10dp"
+                android:inputType="textMultiLine"
+                android:drawableStart="@drawable/ic_baseline_notes_24"
+
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_button_Register"
+            android:layout_below="@id/notes_layout"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="3dp"
+            app:cardBackgroundColor="@color/transparent"
+            >
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                style="@style/RippleStyleGrey"
+                android:layout_width="110dp"
+                android:layout_height="50dp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_register"
+                    android:layout_width="110dp"
+                    android:layout_height="50dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/bg_button"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:text="@string/register"
+                    />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

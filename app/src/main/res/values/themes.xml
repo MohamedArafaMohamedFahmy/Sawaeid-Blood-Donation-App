@@ -19,7 +19,7 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@color/red</item>
-        <item name="colorPrimary">@color/black_gray</item>
+        <item name="colorPrimary">@color/red</item>
         <item name="colorSecondary">@color/red</item>
 
     </style>
@@ -32,5 +32,9 @@
 
     <style name="FilledBoxEndIconTint" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="endIconTint">#A1000000</item>
+    </style>
+
+    <style name="FilledBoxEndIconTintDate" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="endIconTint">@color/red</item>
     </style>
 </resources>

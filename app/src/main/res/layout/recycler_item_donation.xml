@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layoutDirection="ltr"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
@@ -16,56 +17,89 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFF4E6"
+            android:background="@drawable/bg_card_view"
             >
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_name_donor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black_gray"
+        android:textColor="@color/white"
         android:gravity="center"
         android:textStyle="bold"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:padding="5dp"
         />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_phone"
+                android:layout_below="@id/text_name_donor"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:cardCornerRadius="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                app:cardBackgroundColor="@color/green"
+                android:layout_alignParentStart="true"
+                >
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/button_phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@color/transparent"
+                android:src="@drawable/ic_baseline_smartphone_24"
+
+                />
+            </androidx.cardview.widget.CardView>
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_phone_number_donor"
         android:layout_below="@id/text_name_donor"
+        android:layout_toEndOf="@id/card_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:textColor="@color/black_gray"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:padding="5dp"
-
-        />
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/text_city"
-        android:layout_below="@id/text_name_donor"
-        android:layout_alignParentEnd="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        android:textColor="@color/black_gray"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="18sp"
         android:padding="5dp"
-        />
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/text_last_donation"
-        android:layout_below="@id/text_phone_number_donor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black_gray"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:padding="5dp"
-        />
-        </RelativeLayout>
 
-    </androidx.cardview.widget.CardView>
+        />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_city"
+            android:layout_below="@id/text_name_donor"
+            android:layout_toEndOf="@id/text_phone_number_donor"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:padding="5dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_last_donation"
+            android:layout_below="@id/card_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:padding="5dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
