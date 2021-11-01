@@ -39,7 +39,7 @@ public class DonorDetailsActivity extends AppCompatActivity implements CustomSpi
     TextInputLayout layoutLastDonation;
     TextInputEditText etNameDonor, etPhoneNumber, etCity, etLastDonation, etNotes;
     AppCompatButton btRegister;
-    String nameDonor, phoneNumber, city, lastDonation, bloodType, notes, idDonor,donationDate;
+    String nameDonor, phoneNumber, city, lastDonation, bloodType, retrieveBloodType, notes, idDonor,donationDate;
     DonorDataModel donorDataModel, retrieveDonorData;
     DatabaseReference databaseReference;
     Bundle extra;
@@ -76,7 +76,7 @@ public class DonorDetailsActivity extends AppCompatActivity implements CustomSpi
             etLastDonation.setText(retrieveDonorData.getLastDonation());
             etNotes.setText(retrieveDonorData.getNotes());
             btRegister.setText(R.string.update);
-            bloodType = extra.getString("bloodType");
+            retrieveBloodType = extra.getString("bloodType");
             spinnerBlood.setVisibility(View.GONE);
         }
 
@@ -105,9 +105,10 @@ public class DonorDetailsActivity extends AppCompatActivity implements CustomSpi
             city = Objects.requireNonNull(etCity.getText()).toString();
             lastDonation = Objects.requireNonNull(etLastDonation.getText()).toString();
             notes = Objects.requireNonNull(etNotes.getText()).toString();
-            idDonor = databaseReference.push().getKey();
-            donorDataModel = new DonorDataModel(nameDonor, city, phoneNumber, lastDonation, bloodType, notes,idDonor);
-            if (!nameDonor.isEmpty() && phoneNumber.length() == 10 && !city.isEmpty() && !lastDonation.isEmpty() && !bloodType.isEmpty() ) {
+
+            if (!nameDonor.isEmpty() && phoneNumber.length() == 10 && !city.isEmpty() && !lastDonation.isEmpty() && bloodType != null && retrieveDonorData == null) {
+                idDonor = databaseReference.push().getKey();
+                donorDataModel = new DonorDataModel(nameDonor, city, phoneNumber, lastDonation, bloodType, notes,idDonor);
                 databaseReference.child("BloodDonors").child(bloodType).child(idDonor).setValue(donorDataModel).addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(this, "Register Successfully", Toast.LENGTH_SHORT).show();
@@ -117,8 +118,9 @@ public class DonorDetailsActivity extends AppCompatActivity implements CustomSpi
                 });
             }
 
-            if (!nameDonor.isEmpty() && phoneNumber.length() == 10 && !city.isEmpty() && !lastDonation.isEmpty()  && !retrieveDonorData.getId().isEmpty() ) {
-                databaseReference.child("BloodDonors").child(bloodType).child(retrieveDonorData.getId()).setValue(donorDataModel).addOnCompleteListener(task -> {
+            if (!nameDonor.isEmpty() && phoneNumber.length() == 10 && !city.isEmpty() && !lastDonation.isEmpty()  && retrieveDonorData != null && !retrieveBloodType.isEmpty() ) {
+                donorDataModel = new DonorDataModel(nameDonor, city, phoneNumber, lastDonation, retrieveBloodType, notes,retrieveDonorData.getId());
+                databaseReference.child("BloodDonors").child(retrieveBloodType).child(retrieveDonorData.getId()).setValue(donorDataModel).addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(this, "Update Successfully", Toast.LENGTH_SHORT).show();
                     } else {

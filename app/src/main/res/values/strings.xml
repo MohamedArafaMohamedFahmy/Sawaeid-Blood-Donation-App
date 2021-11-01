@@ -47,6 +47,7 @@
     <string name="register">Register</string>
     <string name="add_donor">Add Donor</string>
     <string name="update">Update</string>
+    <string name="search_by_phone_number_or_name">Search by phone number or name</string>
 
 
     <string-array name="blood_type">

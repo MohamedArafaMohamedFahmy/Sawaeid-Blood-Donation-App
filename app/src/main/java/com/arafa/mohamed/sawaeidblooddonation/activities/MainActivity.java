@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,7 +17,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.arafa.mohamed.sawaeidblooddonation.R;
 import com.arafa.mohamed.sawaeidblooddonation.adapter.BloodTypeAdapter;
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements CustomSpinner.OnS
     ArrayList<DonorDataModel> listDonor;
     DonorDataModel donorDataModel;
     DonorAdapter donorAdapter;
+    LinearLayout linearProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +62,12 @@ public class MainActivity extends AppCompatActivity implements CustomSpinner.OnS
         spinnerBlood.setSpinnerEventsListener(this);
         bloodTypeAdapter = new BloodTypeAdapter(MainActivity.this, DataBloodTypeModel.getBloodType());
         spinnerBlood.setAdapter(bloodTypeAdapter);
+        linearProgressBar = findViewById(R.id.linear_progress_bar);
         listDonor = new ArrayList<>();
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
         ActivityCompat.requestPermissions(MainActivity.this, new String[]{android.Manifest.permission.CALL_PHONE},1);
+        linearProgressBar.setVisibility(View.VISIBLE);
 
         spinnerBlood.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -80,8 +86,10 @@ public class MainActivity extends AppCompatActivity implements CustomSpinner.OnS
                             donorAdapter.notifyDataSetChanged();
                             recListDonor.setAdapter(donorAdapter);
                             recListDonor.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+                            linearProgressBar.setVisibility(View.GONE);
                         }else{
                             donorAdapter.notifyDataSetChanged();
+                            linearProgressBar.setVisibility(View.GONE);
                             Toast.makeText(MainActivity.this, "Not Found Data", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -141,6 +149,31 @@ public class MainActivity extends AppCompatActivity implements CustomSpinner.OnS
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        searchView.setQueryHint(getString(R.string.search_by_phone_number_or_name));
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (!newText.isEmpty()) {
+                    donorAdapter.getFilter().filter(newText);
+                    donorAdapter.notifyDataSetChanged();
+                }else {
+                    donorAdapter.getFilter().filter(newText);
+                    donorAdapter.notifyDataSetChanged();
+                }
+
+                return false;
+            }
+        });
         return true;
     }
 

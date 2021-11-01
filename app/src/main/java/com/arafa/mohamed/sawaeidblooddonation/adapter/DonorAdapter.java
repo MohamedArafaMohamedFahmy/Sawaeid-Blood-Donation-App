@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,20 +32,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Objects;
 
-public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.MyViewHolder> {
+public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.MyViewHolder>  implements Filterable {
     Context context;
-    ArrayList<DonorDataModel> downloadData;
+    ArrayList<DonorDataModel> downloadData, dataListFilter;
     AppCompatButton btYes,btNo;
     DatabaseReference databaseReference;
     String bloodType;
-
 
     public DonorAdapter(Context context, ArrayList<DonorDataModel> downloadData, String bloodType) {
         this.context = context;
         this.downloadData = downloadData;
         this.bloodType = bloodType;
+        dataListFilter = new ArrayList<>(downloadData);
     }
 
     @NonNull
@@ -97,11 +100,46 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.MyViewHolder
             tvLastDonation = itemView.findViewById(R.id.text_last_donation);
             btPhone = itemView.findViewById(R.id.button_phone);
 
-
         }
     }
+      @Override
+    public Filter getFilter() {
+        return patientFilter;
+    }
 
-    public  void showCustomDialog(int position){
+    private  Filter patientFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<DonorDataModel> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(dataListFilter);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (DonorDataModel item : dataListFilter) {
+                    if (item.getName().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                    if (item.getPhoneNumber().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            downloadData.clear();
+            downloadData.addAll((Collection<? extends DonorDataModel>) results.values);
+            notifyDataSetChanged();
+
+        }
+    };
+
+        public  void showCustomDialog(int position){
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -123,7 +161,6 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.MyViewHolder
                 }
             });
             dialog.dismiss();
-
         });
 
         btNo.setOnClickListener(v -> dialog.dismiss());
