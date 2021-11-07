@@ -61,7 +61,7 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull  DonorAdapter.MyViewHolder holder, int position) {
 
         holder.tvNameDonor.setText(downloadData.get(position).getName());
-        holder.tvPhoneNumberDonor.setText(context.getResources().getString(R.string.zero,downloadData.get(position).getPhoneNumber()));
+        holder.tvPhoneNumberDonor.setText(downloadData.get(position).getPhoneNumber());
         holder.tvCity.setText(downloadData.get(position).getCity());
         holder.tvLastDonation.setText(downloadData.get(position).getLastDonation());
         holder.btPhone.setOnClickListener(v -> {

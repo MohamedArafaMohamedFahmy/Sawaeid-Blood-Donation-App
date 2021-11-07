@@ -87,7 +87,6 @@
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="10dp"
             android:hint="@string/phone_number"
-            app:prefixText="0"
             app:prefixTextColor="@color/black"
             android:textColorHint="@color/black_gray"
             app:boxCornerRadiusBottomEnd="10dp"
@@ -105,7 +104,7 @@
                 android:textColor="@color/black_gray"
                 android:drawablePadding="10dp"
                 android:inputType="phone"
-                android:maxLength="10"
+                android:maxLength="11"
                 android:textDirection="ltr"
                 android:drawableStart="@drawable/ic_baseline_phone_24"
 

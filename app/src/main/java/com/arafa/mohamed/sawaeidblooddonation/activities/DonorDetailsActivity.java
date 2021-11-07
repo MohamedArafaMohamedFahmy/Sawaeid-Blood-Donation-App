@@ -71,7 +71,7 @@ public class DonorDetailsActivity extends AppCompatActivity implements CustomSpi
 
         if (retrieveDonorData != null){
             etNameDonor.setText(retrieveDonorData.getName());
-            etPhoneNumber.setText(getResources().getString(R.string.zero,retrieveDonorData.getPhoneNumber()));
+            etPhoneNumber.setText(retrieveDonorData.getPhoneNumber());
             etCity.setText(retrieveDonorData.getCity());
             etLastDonation.setText(retrieveDonorData.getLastDonation());
             etNotes.setText(retrieveDonorData.getNotes());
@@ -106,7 +106,7 @@ public class DonorDetailsActivity extends AppCompatActivity implements CustomSpi
             lastDonation = Objects.requireNonNull(etLastDonation.getText()).toString();
             notes = Objects.requireNonNull(etNotes.getText()).toString();
 
-            if (!nameDonor.isEmpty() && phoneNumber.length() == 10 && !city.isEmpty() && !lastDonation.isEmpty() && bloodType != null && retrieveDonorData == null) {
+            if (!nameDonor.isEmpty() && phoneNumber.length() == 11 && !city.isEmpty() && !lastDonation.isEmpty() && bloodType != null && retrieveDonorData == null) {
                 idDonor = databaseReference.push().getKey();
                 donorDataModel = new DonorDataModel(nameDonor, city, phoneNumber, lastDonation, bloodType, notes,idDonor);
                 databaseReference.child("BloodDonors").child(bloodType).child(idDonor).setValue(donorDataModel).addOnCompleteListener(task -> {
@@ -118,7 +118,7 @@ public class DonorDetailsActivity extends AppCompatActivity implements CustomSpi
                 });
             }
 
-            if (!nameDonor.isEmpty() && phoneNumber.length() == 10 && !city.isEmpty() && !lastDonation.isEmpty()  && retrieveDonorData != null && !retrieveBloodType.isEmpty() ) {
+            if (!nameDonor.isEmpty() && phoneNumber.length() == 11 && !city.isEmpty() && !lastDonation.isEmpty()  && retrieveDonorData != null && !retrieveBloodType.isEmpty() ) {
                 donorDataModel = new DonorDataModel(nameDonor, city, phoneNumber, lastDonation, retrieveBloodType, notes,retrieveDonorData.getId());
                 databaseReference.child("BloodDonors").child(retrieveBloodType).child(retrieveDonorData.getId()).setValue(donorDataModel).addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -136,7 +136,7 @@ public class DonorDetailsActivity extends AppCompatActivity implements CustomSpi
             if (phoneNumber.isEmpty()){
                 etPhoneNumber.setError("Please enter Phone Number");
             }
-            if (phoneNumber.length() < 10){
+            if (phoneNumber.length() < 11){
                 etPhoneNumber.setError("Please enter 11 number");
             }
             if (city.isEmpty()){
