@@ -18,9 +18,37 @@
         android:layout_alignParentTop="true"
         />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_number_of_donor"
+        android:layout_below="@id/toolbar_blood_donation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/number_of_donor"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:textColor="@color/black_gray"
+
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_number"
+        android:layout_below="@id/toolbar_blood_donation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black_gray"
+        android:layout_toEndOf="@id/text_number_of_donor"
+        android:layout_marginStart="10dp"
+        android:padding="10dp"
+        />
+
+
+
     <com.arafa.mohamed.sawaeidblooddonation.models.CustomSpinner
         android:id="@+id/spinner_blood"
-        android:layout_below="@id/toolbar_blood_donation"
+        android:layout_below="@id/text_number_of_donor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

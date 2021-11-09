@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
+import android.widget.Filter;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.arafa.mohamed.sawaeidblooddonation.R;
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements CustomSpinner.OnS
     Toolbar toolbar;
     RecyclerView recListDonor;
     AppCompatButton btYes,btNo;
+    AppCompatTextView tvNumber;
     DatabaseReference databaseReference;
     String nameSelected;
     ArrayList<DonorDataModel> listDonor;
@@ -59,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements CustomSpinner.OnS
 
         spinnerBlood = findViewById(R.id.spinner_blood);
         recListDonor = findViewById(R.id.rec_data_donation);
+        tvNumber = findViewById(R.id.text_number);
         spinnerBlood.setSpinnerEventsListener(this);
         bloodTypeAdapter = new BloodTypeAdapter(MainActivity.this, DataBloodTypeModel.getBloodType());
         spinnerBlood.setAdapter(bloodTypeAdapter);
@@ -87,10 +91,10 @@ public class MainActivity extends AppCompatActivity implements CustomSpinner.OnS
                             recListDonor.setAdapter(donorAdapter);
                             recListDonor.setLayoutManager(new LinearLayoutManager(MainActivity.this));
                             linearProgressBar.setVisibility(View.GONE);
+                            tvNumber.setText(String.valueOf(listDonor.size()));
                         }else{
-                            donorAdapter.notifyDataSetChanged();
                             linearProgressBar.setVisibility(View.GONE);
-                            Toast.makeText(MainActivity.this, "Not Found Data", Toast.LENGTH_SHORT).show();
+                            tvNumber.setText(R.string.text_not_found_data);
                         }
                     }
 
@@ -158,19 +162,25 @@ public class MainActivity extends AppCompatActivity implements CustomSpinner.OnS
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                if (donorAdapter != null) {
+                    donorAdapter.notifyDataSetChanged();
+                    Filter filter = donorAdapter.getFilter();
+                    if (filter != null){
+                        filter.filter(query);
+                    }
+                }
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (!newText.isEmpty()) {
-                    donorAdapter.getFilter().filter(newText);
+                if (donorAdapter != null) {
                     donorAdapter.notifyDataSetChanged();
-                }else {
-                    donorAdapter.getFilter().filter(newText);
-                    donorAdapter.notifyDataSetChanged();
+                    Filter filter = donorAdapter.getFilter();
+                    if (filter != null){
+                        filter.filter(newText);
+                    }
                 }
-
                 return false;
             }
         });
